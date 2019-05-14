@@ -9,17 +9,30 @@ import javax.print.Doc;
 
 public class MoviesDTO {
 
-    private Document MoviesList;
+    private Document CurrentMoviesList;
+    private Document NewMoviesList;
+    private NodeList AllRecords;
 
     public MoviesDTO(String XMLMoviesDataFilePath) {
-        XMlFileReaderReader xMlFileReaderReader = new XMlFileReaderReader(XMLMoviesDataFilePath);
-        MoviesList = xMlFileReaderReader.getParsedXMLFile();
+        XMLFileReader xMlFileReaderReader = new XMLFileReader(XMLMoviesDataFilePath);
+        CurrentMoviesList = xMlFileReaderReader.getParsedXMLFile();
+
+        XMLFileWriter xmlFileWriterWriter = new XMLFileWriter(XMLMoviesDataFilePath);
+        NewMoviesList = xmlFileWriterWriter.getParsedXMLFile();
+
+        setAllRecords();
     }
 
-    private NodeList getAllRecords(){
-        return MoviesList.getElementsByTagName("record");
+    // Handling all movie records in NodeList
+    private void setAllRecords(){
+         AllRecords = CurrentMoviesList.getElementsByTagName("record");
     }
 
+    public NodeList getAllRecords() {
+        return AllRecords;
+    }
+
+    // Accessor / action methods
     public int totalRecords(){
         return getAllRecords().getLength();
     }
@@ -30,19 +43,6 @@ public class MoviesDTO {
             Element element = (Element) node;
             System.out.println(element.getElementsByTagName("movie_name").item(0).getTextContent());
         }
-    }
-
-    public void writeMoreMovieNames() {
-        XMLFileWriterWriter xmlFileWriterWriter = new XMLFileWriterWriter("resources/movies.xml");
-        MoviesList = xmlFileWriterWriter.getNewXMLFile();
-
-        MoviesList.getElementsByTagName("record").getLength();
-        for (int i = 0; i < totalRecords(); i++) {
-            Node node = getAllRecords().item(i);
-            Element element = (Element) node;
-            System.out.println(element.getElementsByTagName("movie_name").item(0).getTextContent());
-        }
-        // printAllMovieNames();
     }
 
 }

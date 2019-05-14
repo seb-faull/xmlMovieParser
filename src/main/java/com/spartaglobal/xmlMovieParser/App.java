@@ -16,6 +16,8 @@ public class App
         // Write movie names
         movies.writeMoreMovieNames();
 
+        System.out.println(movies.totalRecords());
+
         // Read movie names again
     }
 }

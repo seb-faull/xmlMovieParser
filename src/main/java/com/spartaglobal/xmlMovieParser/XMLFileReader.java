@@ -9,11 +9,11 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class XMlFileReaderReader {
+public class XMLFileReader {
 
     private Document parsedXMLFile;
 
-    public XMlFileReaderReader(String xmlFilePath) {
+    public XMLFileReader(String xmlFilePath) {
         try {
         File xmlFile = new File(xmlFilePath);
         DocumentBuilderFactory xmlFactory = DocumentBuilderFactory.newInstance();
