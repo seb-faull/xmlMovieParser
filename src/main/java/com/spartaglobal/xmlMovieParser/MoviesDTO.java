@@ -24,14 +24,6 @@ public class MoviesDTO {
         return getAllRecords().getLength();
     }
 
-//     private Node returnElement(String elementName){
-//         for (int i = 0; i < totalRecords(); i++) {
-//             Node node = getAllRecords().item(i);
-//             Element element = (Element) node;
-//             System.out.println(element.getElementsByTagName("movie_name").item(0).getTextContent());
-//         }
-//     }
-
     public void printAllMovieNames(){
         for (int i = 0; i < totalRecords(); i++) {
             Node node = getAllRecords().item(i);
@@ -40,5 +32,17 @@ public class MoviesDTO {
         }
     }
 
+    public void writeMoreMovieNames() {
+        XMLFileWriterWriter xmlFileWriterWriter = new XMLFileWriterWriter("resources/movies.xml");
+        MoviesList = xmlFileWriterWriter.getNewXMLFile();
+
+        MoviesList.getElementsByTagName("record").getLength();
+        for (int i = 0; i < totalRecords(); i++) {
+            Node node = getAllRecords().item(i);
+            Element element = (Element) node;
+            System.out.println(element.getElementsByTagName("movie_name").item(0).getTextContent());
+        }
+        // printAllMovieNames();
+    }
 
 }

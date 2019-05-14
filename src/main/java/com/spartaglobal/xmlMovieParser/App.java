@@ -10,6 +10,12 @@ public class App
     {
         MoviesDTO movies = new MoviesDTO("resources/movies.xml");
 
+        // Read movie names
         movies.printAllMovieNames();
+
+        // Write movie names
+        movies.writeMoreMovieNames();
+
+        // Read movie names again
     }
 }
