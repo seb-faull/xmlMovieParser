@@ -7,6 +7,10 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.File;
 
 public class MovieWriter {
@@ -45,9 +49,18 @@ public class MovieWriter {
             // Generate the XML output to apply the transformation. The result appears on the output stream, System.out.
             //tform.transform(new DOMSource(NewMoviesList), new StreamResult(System.out));
 
+            // Remove generated empty lines from XML file
+            XPath xp = XPathFactory.newInstance().newXPath();
+            NodeList nl = (NodeList) xp.evaluate("//text()[normalize-space(.)='']", NewMoviesList, XPathConstants.NODESET);
+            
+            for (int i=0; i < nl.getLength(); ++i) {
+                Node node = nl.item(i);
+                node.getParentNode().removeChild(node);
+            }
+
             // To write the output directly to a file, use the following.
             tform.transform(new DOMSource(NewMoviesList), new StreamResult(new File("resources/movies_new.xml")));
-        } catch (TransformerException e) {
+        } catch (TransformerException | XPathExpressionException e) {
             e.printStackTrace();
         }
     }
