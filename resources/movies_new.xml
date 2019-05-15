@@ -502,7 +502,8 @@
    </record>
    
    <record>
-      <movie_name>Pulp Fiction</movie_name>
-      <movie_genre>Dark Comedy</movie_genre>
+      <movie_name>Finding Nemo</movie_name>
+      <movie_genre>Animation | Adventure | Comedy</movie_genre>
+      <cost>£2.99</cost>
    </record>
 </movies>

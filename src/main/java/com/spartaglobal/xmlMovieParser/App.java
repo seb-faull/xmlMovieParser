@@ -6,18 +6,16 @@ package com.spartaglobal.xmlMovieParser;
  */
 public class App 
 {
+
     public static void main( String[] args )
     {
-        MoviesDTO movies = new MoviesDTO("resources/movies.xml");
-
         // Read movie names
-        movies.printAllMovieNames();
+        MoviesReaderDTO moviesReader = new MoviesReaderDTO("resources/movies.xml");
+        moviesReader.printAllMovieNames();
+        System.out.println(moviesReader.totalRecords());
 
-        // Write movie names
-        movies.writeMoreMovieNames();
-
-        System.out.println(movies.totalRecords());
-
-        // Read movie names again
+        // Write movies
+        MovieWriter movieWriter = new MovieWriter("resources/movies.xml", "Finding Nemo", "Animation | Adventure | Comedy", "£2.99");
     }
+
 }

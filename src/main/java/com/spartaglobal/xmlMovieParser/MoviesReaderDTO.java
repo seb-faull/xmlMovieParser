@@ -7,18 +7,14 @@ import org.w3c.dom.NodeList;
 
 import javax.print.Doc;
 
-public class MoviesDTO {
+public class MoviesReaderDTO {
 
     private Document CurrentMoviesList;
-    private Document NewMoviesList;
     private NodeList AllRecords;
 
-    public MoviesDTO(String XMLMoviesDataFilePath) {
-        XMLFileReader xMlFileReaderReader = new XMLFileReader(XMLMoviesDataFilePath);
-        CurrentMoviesList = xMlFileReaderReader.getParsedXMLFile();
-
-        XMLFileWriter xmlFileWriterWriter = new XMLFileWriter(XMLMoviesDataFilePath);
-        NewMoviesList = xmlFileWriterWriter.getParsedXMLFile();
+    public MoviesReaderDTO(String XMLMoviesDataFilePath) {
+        XMLFileReader xmlFileReader = new XMLFileReader(XMLMoviesDataFilePath);
+        CurrentMoviesList = xmlFileReader.getParsedXMLFile();
 
         setAllRecords();
     }
